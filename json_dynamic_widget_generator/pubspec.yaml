@@ -1,0 +1,33 @@
+name: json_dynamic_widget_generator
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+  
+dependencies:
+  flutter:
+    sdk: flutter
+  recase: ^4.0.0
+  json_dynamic_widget_annotation:
+    path: ../json_dynamic_widget_annotation
+
+  theme_json_converter: ^0.0.1
+    
+  build: ^2.0.0
+  source_gen: ^1.0.0
+  analyzer: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.0.0
+  pedantic: ^1.11.1
+  flutter_lints: ^1.0.0
+
+
+  

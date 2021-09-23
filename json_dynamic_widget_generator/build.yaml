@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      generators|annotations:
+        enabled: true
+
+builders:
+  generators:
+    import: "package:json_dynamic_widget_generator/json_dynamic_widget_generator.dart"
+    builder_factories: ["generateJsonComponent"]
+    build_extensions: { ".dart": [".json_component.dart"] }
+    auto_apply: dependents
+    build_to: source
+    runs_before: ["json_serializable|json_serializable"]

@@ -1,0 +1,21 @@
+name: json_dynamic_widget_annotation
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  json_annotation: ^4.0.0
+  json_dynamic_widget: ^2.1.0
+  theme_json_converter: ^0.0.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
