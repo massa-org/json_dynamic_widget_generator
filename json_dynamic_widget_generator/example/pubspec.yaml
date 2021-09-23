@@ -30,8 +30,7 @@ dependencies:
   json_annotation: ^4.0.0
   json_dynamic_widget: ^2.1.0
 
-  json_dynamic_widget_annotation:
-    path: ../../json_dynamic_widget_annotation
+  json_dynamic_widget_annotation: ^0.0.1
   
 dev_dependencies:
   flutter_test:

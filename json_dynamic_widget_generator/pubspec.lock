@@ -308,9 +308,9 @@ packages:
   json_dynamic_widget_annotation:
     dependency: "direct main"
     description:
-      path: "../json_dynamic_widget_annotation"
-      relative: true
-    source: path
+      name: json_dynamic_widget_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   json_schema2:
     dependency: transitive

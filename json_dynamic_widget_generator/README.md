@@ -1,39 +1,55 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
+Generate builder for widget to use it with json_dynamic_widget
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- generate builders
+- process child/children param
+- pass key param
+- define custom builder name
+- serialize material theme classes
 
 ## Getting started
+Add to pubspec.yaml
+```yaml
+dependencies:
+  json_dynamic_widget_annotation: ^0.0.1
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
+dev_dependencies:
+  json_dynamic_widget_generator: ^0.0.1
+  
+  build_runner: ^2.0.0
+```
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Annotate widget with `@JsonDynamicWidgetAnnotation()` and add part files '*.g.dart' and '*.json_component.dart'
 
 ```dart
-const like = 'sample';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart' as _html;
+// import annotation
+import 'package:json_dynamic_widget_annotation/json_dynamic_widget_annotation.dart';
+
+part 'html_widget.g.dart';
+part 'html_widget.json_component.dart';
+
+// Generated builder has name `${className}Builder` or you can pass name into annotation parameter
+// `type` of builder is className in snake_case
+@JsonDynamicWidgetAnnotation()
+class HtmlWidget extends StatelessWidget {
+  const SomeTextWidget(this.html, {Key? key}) : super(key: key);
+
+  final String html;
+
+  @override
+  Widget build(BuildContext context) {
+    return _html.HtmlWidget(html);
+  }
+}
+
+// then register builder
+HtmlWidgetBuilder.register(JsonWidgetRegistry.instance);
+
 ```
 
-## Additional information
+Than just run `build_runner`
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## Additional info
+For more info about widget build process and usage see [json_dynamic_widget](https://pub.dev/packages/json_dynamic_widget)
