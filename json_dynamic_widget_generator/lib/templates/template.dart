@@ -40,7 +40,7 @@ class $argumentName {
     /*OPTIONAL this.\${e.name}, */
     ${optional.isNotEmpty ? '[${optional.map((e) => 'this.${e.name},').join('\n')}]' : ''}
     /*NAMED this.\${e.name}, */
-    ${named.isNotEmpty ? '{${named.map((e) => 'this.${e.name},').join('\n')}}' : ''}
+    ${named.isNotEmpty ? '{${named.map((e) => '${e.isRequiredNamed ? 'required' : ''} this.${e.name},').join('\n')}}' : ''}
   );
 
   factory $argumentName.fromJson(Map<String,dynamic> json) =>
