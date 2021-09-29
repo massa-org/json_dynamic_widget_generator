@@ -5,6 +5,7 @@ enum ChildType {
   children,
 }
 
+/// create child in build method
 String getChildString(ChildType type) {
   switch (type) {
     case ChildType.none:
@@ -33,6 +34,7 @@ String getChildString(ChildType type) {
   }
 }
 
+/// child parameter string
 String getChildParamString(ChildType type) {
   switch (type) {
     case ChildType.none:

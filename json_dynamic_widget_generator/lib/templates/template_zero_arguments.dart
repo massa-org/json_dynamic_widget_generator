@@ -3,6 +3,7 @@ import 'package:json_dynamic_widget_generator/templates/child_param.dart';
 import 'package:json_dynamic_widget_generator/templates/on_register.dart';
 import 'package:recase/recase.dart';
 
+/// templatet to widget without arguments
 String enrichTemplateZeroArguments({
   required String className,
   required List<ParameterElement> required,

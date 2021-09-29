@@ -5,6 +5,7 @@ import 'package:recase/recase.dart';
 
 import 'converters.dart';
 
+/// template for widget that has  arguments other that child, children or key
 String enrichTemplate({
   required String className,
   required List<ParameterElement> required,
@@ -19,6 +20,8 @@ String enrichTemplate({
   final positional = required.followedBy(optional).toList();
 
   final String argumentName = '_${className}Arguments';
+  final String argumentFromJson =
+      '_\$${argumentName.replaceFirst(RegExp('_*'), '')}FromJson(json)';
   final String _builderName = builderName ?? '${className}Builder';
 
   final String childVar = getChildString(childType);
@@ -44,7 +47,7 @@ class $argumentName {
   );
 
   factory $argumentName.fromJson(Map<String,dynamic> json) =>
-      _\$${argumentName.substring(1)}FromJson(json);
+      $argumentFromJson;
 }
 
 class $_builderName extends JsonWidgetBuilder {

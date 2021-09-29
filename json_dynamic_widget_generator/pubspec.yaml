@@ -1,6 +1,6 @@
 name: json_dynamic_widget_generator
 description: Generate builder for widget to use it with json_dynamic_widget
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/massa-org/json_dynamic_widget_generator
 
 environment:
@@ -17,7 +17,7 @@ dependencies:
   theme_json_converter: ^0.0.1
     
   build: ^2.0.0
-  source_gen: ^1.0.0
+  source_gen: ^1.1.0
   analyzer: ^2.0.0
 
 dev_dependencies:

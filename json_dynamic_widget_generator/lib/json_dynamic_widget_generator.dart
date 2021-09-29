@@ -1,4 +1,4 @@
-library theme_generator;
+library json_dynamic_widget;
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
@@ -9,6 +9,7 @@ import 'package:source_gen/source_gen.dart';
 
 import 'templates/template.dart';
 
+/// generate all json component code
 class JsonComponentGenerator
     extends GeneratorForAnnotation<JsonDynamicWidgetAnnotation> {
   @override
@@ -24,30 +25,36 @@ class JsonComponentGenerator
 
     ChildType type = ChildType.none;
 
-    bool setType(ChildType _type) {
-      type = _type;
-      return true;
+    final childParam = constructor.parameters
+        .cast<ParameterElement?>()
+        .firstWhere((e) => e?.name == 'child', orElse: () => null);
+
+    final childrenParam = constructor.parameters
+        .cast<ParameterElement?>()
+        .firstWhere((e) => e?.name == 'children', orElse: () => null);
+
+    if (childParam != null && childrenParam != null) {
+      throw "DynamicWidget can't has child and children param in same time";
     }
 
-    bool hasKey = false;
-    bool setKey() {
-      hasKey = true;
-      return true;
+    if (childParam != null) {
+      type = childParam.isRequiredNamed
+          ? ChildType.requiredChild
+          : ChildType.child;
+    }
+    if (childrenParam != null) type = ChildType.children;
+
+    if (childParam?.isRequiredNamed ?? false) {
+      type = ChildType.requiredChild;
     }
 
-    bool _omit(ParameterElement e) {
-      return (e.isNamed && e.isOptional && e.name == 'key' && setKey()) ||
-          (e.isNamed &&
-              e.name == 'child' &&
-              setType(
-                e.isRequiredNamed ? ChildType.requiredChild : ChildType.child,
-              )) ||
-          (e.isNamed && e.name == 'children' && setType(ChildType.children));
-    }
+    bool hasKey = constructor.parameters.any((e) => e.name == 'key');
 
-    final onRegister = element.lookUpMethod('onRegister', element.library);
+    final hasOnRegister =
+        element.lookUpMethod('onRegister', element.library) != null;
 
-    final parameters = constructor.parameters.where((e) => !_omit(e));
+    final parameters = constructor.parameters
+        .where((e) => !{'key', 'child', 'children'}.contains(e.name));
 
     final enrich =
         parameters.isEmpty ? enrichTemplateZeroArguments : enrichTemplate;
@@ -59,7 +66,7 @@ class JsonComponentGenerator
       builderName: annotation.peek('builderName')?.stringValue,
       childType: type,
       hasKey: hasKey,
-      hasOnRegister: onRegister != null,
+      hasOnRegister: hasOnRegister,
     );
   }
 }

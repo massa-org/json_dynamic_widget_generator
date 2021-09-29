@@ -65,3 +65,13 @@ class WChildren extends StatelessWidget {
     return Container();
   }
 }
+
+@JsonDynamicWidgetAnnotation()
+class _UnderscoreInName extends StatelessWidget {
+  const _UnderscoreInName({required double size, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

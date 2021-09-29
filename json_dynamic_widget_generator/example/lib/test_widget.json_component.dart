@@ -129,7 +129,7 @@ class _WRChildArguments {
 
       /*NAMED this.${e.name}, */
       {
-    this.color,
+    required this.color,
   });
 
   factory _WRChildArguments.fromJson(Map<String, dynamic> json) =>
@@ -226,6 +226,69 @@ class WChildrenBuilder extends JsonWidgetBuilder {
       WChildrenBuilder.type,
       JsonWidgetBuilderContainer(
         builder: WChildrenBuilder.fromDynamic,
+      ),
+    );
+  }
+}
+
+// generate for widget with arguments
+@immutable
+@JsonSerializable(createToJson: false)
+class __UnderscoreInNameArguments {
+  /*ALL final ${e.type} ${e.name};*/
+  final double size;
+
+  const __UnderscoreInNameArguments(
+      /*REQUIRED this.${e.name}, */
+
+      /*OPTIONAL this.${e.name}, */
+
+      /*NAMED this.${e.name}, */
+      {
+    required this.size,
+  });
+
+  factory __UnderscoreInNameArguments.fromJson(Map<String, dynamic> json) =>
+      _$UnderscoreInNameArgumentsFromJson(json);
+}
+
+class _UnderscoreInNameBuilder extends JsonWidgetBuilder {
+  _UnderscoreInNameBuilder(this.arguments) : super(numSupportedChildren: 0);
+
+  static const type = 'underscore_in_name';
+  final __UnderscoreInNameArguments arguments;
+
+  static _UnderscoreInNameBuilder? fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) {
+    if (map == null) return null;
+
+    return _UnderscoreInNameBuilder(
+        __UnderscoreInNameArguments.fromJson(<String, dynamic>{...map}));
+  }
+
+  @override
+  Widget buildCustom({
+    Widget Function(BuildContext context, Widget child)? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  }) {
+    return _UnderscoreInName(
+      /* POSITIONAL arguments.${e.name},*/
+
+      /* NAMED ${e.name}: arguments.${e.name},*/
+      size: arguments.size,
+      key: key,
+    );
+  }
+
+  static void register([JsonWidgetRegistry? registry]) {
+    (registry ?? JsonWidgetRegistry.instance).registerCustomBuilder(
+      _UnderscoreInNameBuilder.type,
+      JsonWidgetBuilderContainer(
+        builder: _UnderscoreInNameBuilder.fromDynamic,
       ),
     );
   }

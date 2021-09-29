@@ -1,3 +1,4 @@
+/// create function to register builder in JsonWidgetRegistry
 String registrationFnString({
   required String className,
   required String builderName,

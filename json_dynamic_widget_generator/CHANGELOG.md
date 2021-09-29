@@ -1,3 +1,6 @@
+## 0.0.3
+
+* fix: correct fromJson for widget with underscore in name start
 
 ## 0.0.2
 

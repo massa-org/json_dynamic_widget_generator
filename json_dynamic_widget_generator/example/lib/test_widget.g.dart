@@ -17,3 +17,9 @@ _WRChildArguments _$WRChildArgumentsFromJson(Map<String, dynamic> json) =>
     _WRChildArguments(
       color: const NullableColorConverter().fromJson(json['color'] as String?),
     );
+
+__UnderscoreInNameArguments _$UnderscoreInNameArgumentsFromJson(
+        Map<String, dynamic> json) =>
+    __UnderscoreInNameArguments(
+      size: (json['size'] as num).toDouble(),
+    );
